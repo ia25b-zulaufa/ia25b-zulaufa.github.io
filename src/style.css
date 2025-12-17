@@ -1,0 +1,91 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-color: gray;
+    overflow: hidden;
+}
+
+.rows {
+    display: flex;
+}
+
+.row {
+    width: 10vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+p {
+    font-size: 50px;
+    color: white;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.popUp {
+    width: 80vw;
+    height: 50vh;
+    border-radius: 20px;
+    background-color: lightgray;
+    left: 10vw;
+    top: 25vh;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    gap: 20px;
+    opacity: 90%;
+}
+
+.popUp .top {
+    gap: 7%;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+
+.popUp .middle {
+    gap: 25px;
+    height: auto;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    list-style: none;
+}
+
+.placeholder,
+.list {
+    width: 25vw;
+}
+
+button {
+    font-size: 20px;
+    border-radius: 10px;
+    height: 50px;
+    width: 90px;
+}
+
+select {
+    margin-left: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+    height: 40px;
+    width: 110px;
+}
+
+.popUp .top p {
+    padding: 0;
+    height: 20px;
+}
