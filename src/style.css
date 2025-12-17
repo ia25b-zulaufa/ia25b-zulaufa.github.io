@@ -54,7 +54,7 @@ p {
 }
 
 .popUp .middle {
-    gap: 25px;
+    gap: 7%;/*25px;*/
     height: auto;
     width: 80vw;
     display: flex;
@@ -63,6 +63,13 @@ p {
 
 .list {
     list-style: none;
+}
+.popUp .bottom {
+    gap: 7%;/*25px;*/
+    height: auto;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
 }
 
 .placeholder,

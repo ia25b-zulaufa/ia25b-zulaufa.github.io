@@ -12,7 +12,7 @@ let letter = document.createElement("p");
 const popUp = document.querySelector(".popUp");
 const score = document.querySelector(".score");
 const correct = document.querySelector(".correct");
-const list = document.querySelector(".list");
+const highScore = document.querySelector(".highScore");
 const listItems = document.querySelectorAll(".list *");
 const difficultySelector = document.querySelector(".difficultySelector");
 difficultySelector.addEventListener("click", (e) => {
@@ -118,7 +118,7 @@ let userName;
 let inputValue;
 let lastInputValue;
 const input = document.querySelector(".login");
-const inputSelector = document.querySelector(".inputSelector");
+/*const inputSelector = document.querySelector(".inputSelector");
 inputSelector.addEventListener("click", (e)=>{
     if (e.target.value === "Login"){
         input.placeholder = "Enter Name";
@@ -181,7 +181,7 @@ input.addEventListener("keypress", (e) => {
             }
         }
     }
-})
+})*/
 
 document.addEventListener("keypress", (e) =>{
     keyPressed = e.key.toLowerCase();
@@ -190,7 +190,7 @@ document.addEventListener("keypress", (e) =>{
 gameOver = true;
 difficultySelector.value = "Medium";
 
-setInterval(() => {
+/*setInterval(() => {
     fetch("src/scores.csv")
         .then((res) => res.text())
         .then((text) => {
@@ -215,6 +215,15 @@ setInterval(() => {
                     item.textContent = i + ": " + array[i][0] + " | Score: " + array[i][1];
                 }
             }
+        })
+        .catch((e) => console.error(e));
+
+}, 500) //get names for scoreboard*/
+setInterval(() => {
+    fetch("src/scores.csv")
+        .then((res) => res.text())
+        .then((text) => {
+            highScore.textContent = "High Score: " + text;
         })
         .catch((e) => console.error(e));
 
@@ -363,7 +372,9 @@ setInterval(() => {
                     console.log(score.textContent);
                     console.log(Math.round((g - 45) / seed * 234.3) + "=" + lettersTyped);
                     document.body.addEventListener("click", () => open("https://www.youtube.com/watch?v=2qBlE2-WL60", "_target"));
-                    console.log("catched")
+                    console.log("catched");
+                }else {
+                    //TODO: make dunction to try and update highScore
                 }
                 popUp.style.top = window.innerHeight + "px";
                 popUp.style.visibility = "visible";
