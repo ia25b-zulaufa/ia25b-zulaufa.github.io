@@ -134,7 +134,7 @@ input.addEventListener("keypress", (e) => {
     if (inputSelector.value === "Login"){
         if (e.key === "Enter"){
             input.value = "";
-            fetch("users.csv")
+            fetch("src/users.csv")
                 .then((res) => res.text())
                 .then((text) => {
                     if (!(text.includes("#" + inputValue + ",") || input.placeholder === "Enter Password")){
@@ -191,7 +191,7 @@ gameOver = true;
 difficultySelector.value = "Medium";
 
 setInterval(() => {
-    fetch("scores.csv")
+    fetch("src/scores.csv")
         .then((res) => res.text())
         .then((text) => {
             let i = 0;
