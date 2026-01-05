@@ -225,6 +225,11 @@ difficultySelector.value = "Medium";
         .catch((e) => console.error(e));
 
 }, 500) //get names for scoreboard*/
+if (localStorage.highScore === undefined){
+    localStorage.highScore = JSON.stringify([Number(0), Number(0), Number(0), Number(0), Number(0)]);
+    console.log("initialized");
+}
+console.log(JSON.parse(localStorage.highScore)[selectedSpeed]);
 tryUpdateHighScore();
 setInterval(() => {
     if (localStorage.highScore === undefined){
