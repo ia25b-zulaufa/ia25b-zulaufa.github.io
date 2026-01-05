@@ -19,18 +19,23 @@ difficultySelector.addEventListener("click", (e) => {
     if (e.target.value === "Easy"){
         speed = 1200;
         startSpeed = 1200;
+        selectedSpeed = 0;
     }else if (e.target.value === "Medium"){
         speed = 800;
         startSpeed = 800;
+        selectedSpeed = 1;
     }if (e.target.value === "Hard"){
         speed = 600;
         startSpeed = 600;
+        selectedSpeed = 2;
     }if (e.target.value === "Extreme"){
         speed = 450;
         startSpeed = 450;
+        selectedSpeed = 3;
     }if (e.target.value === "Impossible"){
         speed = 375;
         startSpeed = 375;
+        selectedSpeed = 4;
     }
     x = startSpeed / (seed - 200);
     s = speed * seed * 3.3;
@@ -76,6 +81,7 @@ restartButton.addEventListener("click", () => {
         }, 5);
     });
 })
+let selectedSpeed = 1;
 let seed = Math.random() * 1000;
 let startSpeed = 1000;
 let x = startSpeed / (seed - 200);
@@ -221,9 +227,11 @@ difficultySelector.value = "Medium";
 }, 500) //get names for scoreboard*/
 tryUpdateHighScore();
 setInterval(() => {
-    if (isNaN(localStorage.highScoreMedium)){
-        localStorage.highScoreMedium = Number(0);
+    if (localStorage.highScore === undefined){
+        localStorage.highScore = JSON.stringify([Number(0), Number(0), Number(0), Number(0), Number(0)]);
+        console.log("initialized");
     }
+    console.log(JSON.parse(localStorage.highScore)[selectedSpeed]);
 
     tryUpdateHighScore();
     /*fetch("src/scores.csv")
@@ -232,7 +240,7 @@ setInterval(() => {
             highScore.textContent = "High Score: " + text;
         })
         .catch((e) => console.error(e));*/
-}, 5000) //makes sure that localStorage.highScore doesn't equal NaN
+}, 500) //makes sure that localStorage.highScore doesn't equal NaN
 
 rows.forEach((row) => {
     letter = document.createElement("p");
@@ -511,10 +519,12 @@ function resetBiggestPadding(){
 }
 
 function tryUpdateHighScore(){
-    if (localStorage.highScoreMedium < Math.floor((((startSpeed - speed) + (lettersTyped / 20)) - (wrongLettersTyped / 3)) * 100) / 100){
-        localStorage.highScoreMedium = Math.floor((((startSpeed - speed) + (lettersTyped / 20)) - (wrongLettersTyped / 3)) * 100) / 100;
+    if (JSON.parse(localStorage.highScore)[selectedSpeed] < Math.floor((((startSpeed - speed) + (lettersTyped / 20)) - (wrongLettersTyped / 3)) * 100) / 100){
+        let highScore = JSON.parse(localStorage.highScore);
+        highScore[selectedSpeed] = Math.floor((((startSpeed - speed) + (lettersTyped / 20)) - (wrongLettersTyped / 3)) * 100) / 100;
+        localStorage.highScore = JSON.stringify(highScore);
     }else {
         //console.log(localStorage.highScore + " < " + Math.floor((((startSpeed - speed) + (lettersTyped / 20)) - (wrongLettersTyped / 3)) * 100) / 100);
     }
-    highScore.textContent = "High Score: " + localStorage.highScoreMedium;
+    highScore.textContent = "High Score: " + JSON.parse(localStorage.highScore)[selectedSpeed];
 }

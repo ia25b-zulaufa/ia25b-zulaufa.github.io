@@ -41,7 +41,7 @@ p {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    overflow: auto;
+    overflow: unset;
     gap: 20px;
     opacity: 90%;
 }
