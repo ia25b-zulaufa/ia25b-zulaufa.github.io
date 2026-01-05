@@ -17,20 +17,20 @@ const listItems = document.querySelectorAll(".list *");
 const difficultySelector = document.querySelector(".difficultySelector");
 difficultySelector.addEventListener("click", (e) => {
     if (e.target.value === "Easy"){
-        speed = 1600;
-        startSpeed = 1600;
+        speed = 1200;
+        startSpeed = 1200;
     }else if (e.target.value === "Medium"){
-        speed = 1000;
-        startSpeed = 1000;
+        speed = 800;
+        startSpeed = 800;
     }if (e.target.value === "Hard"){
-        speed = 700;
-        startSpeed = 700;
+        speed = 600;
+        startSpeed = 600;
     }if (e.target.value === "Extreme"){
-        speed = 550;
-        startSpeed = 550;
-    }if (e.target.value === "Impossible"){
         speed = 450;
         startSpeed = 450;
+    }if (e.target.value === "Impossible"){
+        speed = 375;
+        startSpeed = 375;
     }
     x = startSpeed / (seed - 200);
     s = speed * seed * 3.3;
@@ -219,15 +219,20 @@ difficultySelector.value = "Medium";
         .catch((e) => console.error(e));
 
 }, 500) //get names for scoreboard*/
+tryUpdateHighScore();
 setInterval(() => {
-    fetch("src/scores.csv")
+    if (isNaN(localStorage.highScoreMedium)){
+        localStorage.highScoreMedium = Number(0);
+    }
+
+    tryUpdateHighScore();
+    /*fetch("src/scores.csv")
         .then((res) => res.text())
         .then((text) => {
             highScore.textContent = "High Score: " + text;
         })
-        .catch((e) => console.error(e));
-
-}, 500) //get names for scoreboard
+        .catch((e) => console.error(e));*/
+}, 5000) //makes sure that localStorage.highScore doesn't equal NaN
 
 rows.forEach((row) => {
     letter = document.createElement("p");
@@ -374,7 +379,7 @@ setInterval(() => {
                     document.body.addEventListener("click", () => open("https://www.youtube.com/watch?v=2qBlE2-WL60", "_target"));
                     console.log("catched");
                 }else {
-                    //TODO: make dunction to try and update highScore
+                    tryUpdateHighScore();
                 }
                 popUp.style.top = window.innerHeight + "px";
                 popUp.style.visibility = "visible";
@@ -505,3 +510,11 @@ function resetBiggestPadding(){
     biggestTopPaddingZ = 0;
 }
 
+function tryUpdateHighScore(){
+    if (localStorage.highScoreMedium < Math.floor((((startSpeed - speed) + (lettersTyped / 20)) - (wrongLettersTyped / 3)) * 100) / 100){
+        localStorage.highScoreMedium = Math.floor((((startSpeed - speed) + (lettersTyped / 20)) - (wrongLettersTyped / 3)) * 100) / 100;
+    }else {
+        //console.log(localStorage.highScore + " < " + Math.floor((((startSpeed - speed) + (lettersTyped / 20)) - (wrongLettersTyped / 3)) * 100) / 100);
+    }
+    highScore.textContent = "High Score: " + localStorage.highScoreMedium;
+}
