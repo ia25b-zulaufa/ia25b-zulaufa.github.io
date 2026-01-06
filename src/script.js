@@ -17,12 +17,12 @@ const listItems = document.querySelectorAll(".list *");
 const difficultySelector = document.querySelector(".difficultySelector");
 difficultySelector.addEventListener("click", (e) => {
     if (e.target.value === "Easy"){
-        speed = 1200;
-        startSpeed = 1200;
+        speed = 1000;
+        startSpeed = 1000;
         selectedSpeed = 0;
     }else if (e.target.value === "Medium"){
-        speed = 800;
-        startSpeed = 800;
+        speed = 770;
+        startSpeed = 770;
         selectedSpeed = 1;
     }if (e.target.value === "Hard"){
         speed = 600;
@@ -33,8 +33,8 @@ difficultySelector.addEventListener("click", (e) => {
         startSpeed = 450;
         selectedSpeed = 3;
     }if (e.target.value === "Impossible"){
-        speed = 375;
-        startSpeed = 375;
+        speed = 350;
+        startSpeed = 350;
         selectedSpeed = 4;
     }
     x = startSpeed / (seed - 200);
@@ -82,8 +82,8 @@ restartButton.addEventListener("click", () => {
     });
 })
 let selectedSpeed = 1;
-let seed = Math.random() * 1000;
-let startSpeed = 1000;
+let seed = Math.random() * 770;
+let startSpeed = 770;
 let x = startSpeed / (seed - 200);
 let c = false;
 let speed = 1000;
@@ -304,7 +304,7 @@ setInterval(() => {
         }else if (row.firstElementChild.textContent === "Z" && biggestTopPaddingZ < row.firstElementChild.i){
             biggestTopPaddingZ = row.firstElementChild.i;
         }
-    })
+    }) //sets biggestPadding
 
     if (speed !== Math.round(s / seed / 3.3 * 100) / 100){
         speed = 20000;
@@ -315,7 +315,7 @@ setInterval(() => {
         row.firstElementChild.style.marginTop = row.firstElementChild.i + "px";
         row.firstElementChild.i += window.innerHeight / speed;
         if (row.firstElementChild.i > window.innerHeight / 100 * 60){
-            row.firstElementChild.style.color = "lightgray";
+            row.firstElementChild.style.color = "#932438";
         }else if (row.firstElementChild.style.color !== "yellow"){
             row.firstElementChild.style.color = "white";
         }
@@ -332,10 +332,10 @@ setInterval(() => {
                 speed = Math.round(speed * 100) / 100
                 s = speed * seed * 3.3;
                 console.log(speed);
+                row.firstElementChild.style.color = "yellow";
             }else {
-                row.firstElementChild.textContent = "+0";
+                //row.firstElementChild.textContent = "-";
             }
-            row.firstElementChild.style.color = "yellow";
             let y = 1;
             let p = 50;
             let interval = setInterval(() => {
@@ -349,7 +349,7 @@ setInterval(() => {
                 row.firstElementChild.style.color = "white";
                 clearInterval(interval);
                 row.firstElementChild.style.opacity = "1";
-                row.firstElementChild.style.fontSize = "50px";
+                row.firstElementChild.style.fontSize = "min(50px,10vw)";
             }, 300)
             let i = Math.floor(Math.random() * rows.length);
             let j = 0;

@@ -20,7 +20,6 @@ body {
 }
 
 p {
-    font-size: 50px;
     color: white;
     -moz-user-select: none;
     -khtml-user-select: none;
@@ -28,6 +27,11 @@ p {
     -ms-user-select: none;
     user-select: none;
 }
+
+.row p {
+  font-size: min(50px,10vw);
+}
+
 .popUp {
     width: 80vw;
     height: 50vh;
