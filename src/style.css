@@ -41,7 +41,7 @@ p {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    overflow: unset;
+    overflow: visible;
     gap: 20px;
     opacity: 90%;
 }
@@ -102,13 +102,11 @@ select {
     width: 40vw;
     margin-top: 2vh;
     margin-bottom: min(5vh,5vw);
-    font-size: min(min(10vh,5vw),290%);
+    font-size: min(min(10vh,4vw),290%);
 }
 
-.popUp .bottom button {
+.popUp .bottom button, .popUp .bottom select {
     margin-top: 1vh;
-}
-
-.popUp .bottom select {
-    margin-top: 1.5vh;
+    height: min(50px,min(50px,10vh));
+    width: min(110px,min(110px,35vh));
 }
