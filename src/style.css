@@ -94,5 +94,21 @@ select {
 
 .popUp .top p {
     padding: 0;
-    height: 20px;
+}
+
+.popUp .middle p, .popUp .top p {
+    text-align: center;
+    height: 5vh;
+    width: 40vw;
+    margin-top: 2vh;
+    margin-bottom: min(5vh,5vw);
+    font-size: min(min(10vh,5vw),290%);
+}
+
+.popUp .bottom button {
+    margin-top: 1vh;
+}
+
+.popUp .bottom select {
+    margin-top: 1.5vh;
 }
